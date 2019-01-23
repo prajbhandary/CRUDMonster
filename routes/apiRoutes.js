@@ -46,19 +46,19 @@ module.exports = function(app) {
       ["amount", "users_id", "category_id", "notes", "date"],
       [req.amount, req.users_id, req.category_id, req.notes, req.date],
       function(result) {
-        console.log("API routes and " + result);
+        console.log(">>>>>>>>>>>>>>>>>> API routes and " + result);
         res.json(result);
       }
     );
   });
   app.get("/", function(req, res) {
-    var sqlQuery = "SELECT  distinct(C.name), SUM(E.amount) AS total from expense E inner join category C on E.category_id = C.id inner join users U on E.users_id = U.id where U.userName = 'johnD' group by C.name";
+    
+   var sqlQuery = "select * from users";
     connection.query(sqlQuery, function(error, results, fields) {
         if(error) throw error;
-        console.log("newRoutes!!!!!!!!!!!")
-        console.log(results);
+        console.log("login!!!!!!!!!!!")
 
-        res.render("hdb", {expense: results})
+        res.render("login", {expense: results})
     })
 })
   /* --------------end expense-----------------*/
@@ -94,7 +94,9 @@ module.exports = function(app) {
       condition, function(expense) {
         // console.log("name " + name)
         //console.log("callback: " + JSON.stringify(result));
-        res.render("hdb", {expense: expense});
+        // res.render("hdb", {expense: expense});
+        console.log("here avi")
+        res.render("hdb", {expense: expense})
         // res.render("hdb", {categoryList: sum});
       }
     );

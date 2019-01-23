@@ -117,10 +117,13 @@ $(document).ready(function () {
             url: "/api/user-expenses",
             data: input
           }).then(function (res){
-            // console.log("result " + res)
+            console.log("result-avi " + "here")
+            // $("#username-display").html(res);
+            $('body').empty();
+            $('body').append(res);
           });
           // console.log("success");
-          $("#username-display").html(result);
+          
 
         });
       }
