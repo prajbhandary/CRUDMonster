@@ -8,9 +8,9 @@ module.exports = function(app) {
 
 
   /* ------------income---------------*/
-  app.get("/api/income/all", function(req, res) {
-    var req = req.body;
-    budget.income.all(function(result) {
+  app.post("/api/income/all", function(req, res) {
+    var condition = req.body.name;
+    budget.income.all(condition,function(result) {
       console.log("Api routes " + result);
       res.json(result);
     })
@@ -92,14 +92,39 @@ module.exports = function(app) {
     console.log("line 79: " + condition);
     budget.expense.expenseByCategory(
       condition, function(expense) {
-        // console.log("name " + name)
-        //console.log("callback: " + JSON.stringify(result));
-        // res.render("hdb", {expense: expense});
-        console.log("here avi")
-        res.render("hdb", {expense: expense})
-        // res.render("hdb", {categoryList: sum});
-      }
-    );
+          budget.category.all(function(category) {
+            budget.income.all(condition,function(income) {
+              console.log("Api routes " + income);
+              JSON.stringify(income)
+             console.log(income);
+                
+            // console.log("name " + name)
+              //console.log("callback: " + JSON.stringify(result));
+              // res.render("hdb", {expense: expense});
+              total = 0
+              expense.forEach(function(e) {
+                  console.log(e);
+                  total = total + e.total
+                  difference = income[0].total -total
+                  console.log(difference)
+              })
+              console.log(total);
+              // console.log("name " + name)
+              //console.log("callback: " + JSON.stringify(result));
+              res.render("hdb", {
+                  username: condition,
+                  expense: expense,
+                  category: category,
+                  total: total,
+                  income: income[0].total,
+                  expenses: total,
+                  difference:difference
+              });
+          // res.render("hdb", {categoryList: sum});
+          }
+          );
+        })
+      });
   })
 
   // app.get("/api/user-expenses", function(req, res) {

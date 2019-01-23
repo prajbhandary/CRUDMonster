@@ -114,9 +114,13 @@ var orm = {
     });
   },
 
-  expenseByMonth: function(condition, cb) {
-    var queryString;
-
+  income : function(condition, cb) {
+    var queryString = "SELECT sum(I.amount) As total FROM income  I"
+    queryString +=  " inner join users U on U.id = I.users_id"
+    queryString +=  " where U.userName =  '" 
+    queryString += condition;
+    queryString += "';"
+    console.log (queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;

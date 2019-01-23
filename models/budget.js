@@ -30,8 +30,8 @@ var budgets = {
   },
 
   income: {
-    all: function(cb) {
-      orm.all("income", function(res) {
+    all: function(vals,cb) {
+      orm.income(vals,function(res) {
         cb(res);
       });
     },

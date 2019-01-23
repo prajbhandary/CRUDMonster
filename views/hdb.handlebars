@@ -111,7 +111,7 @@
           <!-- This row will have the total expenses of all the categories -->
           <tr class="total-expense-row">
             <td id="total-category">TOTAL</td>
-            {{!-- <td id="total-expense">{{ total-expense }}</td> --}}
+           <td id="total-expense">{{ total }}</td> 
           </tr>
         </tbody>
       </table>
@@ -129,12 +129,12 @@
           <!-- Income value -->
           <tr>
             <td class="category-td">INCOME</td>
-            <td class="expense-td">${{ income-total }}</td>
+            <td class="expense-td">${{ income }}</td>
           </tr>
           <!-- Using total of all categories' expenses. -->
           <tr>
             <td class="category-td">EXPENSES</td>
-            <td class="expense-td">${{ expense-total }}</td>
+            <td class="expense-td">${{ expenses }}</td>
           </tr>
           <!-- The difference between income and expenses -->
           <tr class="total-savings-row">
